@@ -14,6 +14,7 @@ const nameReducer = (state, action) => {
         ...state,
         isEmpty: action.value.trim().length === 0,
         value: action.value,
+        isValid: action.value.trim().length !== 0,
       };
     }
   }
@@ -25,17 +26,21 @@ const nameReducer = (state, action) => {
       isEmpty: action.value.trim().length === 0,
       value: action.value,
       isTouched: true,
+      isValid: action.value.trim().length !== 0,
     };
   }
 
   return { isTouched: false, isEmpty: null, value: "" };
 };
 
+const emailReducer = (state, action) => {};
+
 const LandingSection = (props) => {
   // Reducers
   const [name, dispatchName] = useReducer(nameReducer, {
     isTouched: false,
     isEmpty: null,
+    isValid: true,
     value: "",
   });
 
@@ -67,7 +72,7 @@ const LandingSection = (props) => {
           value={name.value}
           onChange={handleNameChange}
           onBlur={handleNameBlur}
-          className={`${styles.input} ${name.isEmpty && styles.invalid}`}
+          className={`${styles.input} ${!name.isValid && styles.invalid}`}
         />
         <div className={styles.error}>Required</div>
         <label
