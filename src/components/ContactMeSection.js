@@ -1,6 +1,38 @@
+import { useReducer } from "react";
+
 import styles from "./ContactMeSection.module.css";
 
+const nameReducer = (state, action) => {
+  if (action.type === "CHANGE") {
+    if (state.isTouched === false) {
+      return { ...state, value: action.value };
+    }
+    if (state.isTouched === true) {
+      console.log(action.value.trim().length === 0);
+      return {
+        ...state,
+        isEmpty: action.value.trim().length === 0,
+        value: action.value,
+      };
+    }
+  }
+
+  return { isTouched: false, isValid: null, value: "" };
+};
+
 const LandingSection = (props) => {
+  // Reducers
+  const [name, dispatchName] = useReducer(nameReducer, {
+    isTouched: false,
+    isEmpty: null,
+    value: "",
+  });
+
+  // Handlers
+  const handleNameChange = (e) => {
+    dispatchName({ type: "CHANGE", value: e.target.value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -17,6 +49,8 @@ const LandingSection = (props) => {
         <input
           type="text"
           id="name"
+          value={name.value}
+          onChange={handleNameChange}
           className={`${styles.input} ${styles.invalid}`}
         />
         <div className={styles.error}>Error</div>
