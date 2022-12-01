@@ -70,6 +70,7 @@ const Header = () => {
               <a
                 key={i}
                 href={cur.url}
+                target="_blank"
                 style={{ marginLeft: "15px" }}>
                 <FontAwesomeIcon
                   icon={cur.icon}
