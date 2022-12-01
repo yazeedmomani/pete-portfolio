@@ -3,6 +3,7 @@ import { useReducer } from "react";
 import styles from "./ContactMeSection.module.css";
 
 const nameReducer = (state, action) => {
+  // CHANGE
   if (action.type === "CHANGE") {
     if (state.isTouched === false) {
       return { ...state, value: action.value };
@@ -17,7 +18,17 @@ const nameReducer = (state, action) => {
     }
   }
 
-  return { isTouched: false, isValid: null, value: "" };
+  // BLUR
+  if (action.type === "BLUR") {
+    return {
+      ...state,
+      isEmpty: action.value.trim().length === 0,
+      value: action.value,
+      isTouched: true,
+    };
+  }
+
+  return { isTouched: false, isEmpty: null, value: "" };
 };
 
 const LandingSection = (props) => {
@@ -31,6 +42,10 @@ const LandingSection = (props) => {
   // Handlers
   const handleNameChange = (e) => {
     dispatchName({ type: "CHANGE", value: e.target.value });
+  };
+
+  const handleNameBlur = (e) => {
+    dispatchName({ type: "BLUR", value: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -51,7 +66,8 @@ const LandingSection = (props) => {
           id="name"
           value={name.value}
           onChange={handleNameChange}
-          className={`${styles.input} ${styles.invalid}`}
+          onBlur={handleNameBlur}
+          className={`${styles.input} ${name.isEmpty && styles.invalid}`}
         />
         <div className={styles.error}>Error</div>
         <label

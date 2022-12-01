@@ -93,9 +93,11 @@
   transition: all 200ms;
 }
 
-.invalid {
+.invalid,
+.invalid:focus {
   border: 1px solid #e53e3e;
 }
+
 .invalid + div {
   opacity: 1;
   visibility: visible;
