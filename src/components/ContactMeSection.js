@@ -43,6 +43,16 @@ const nameReducer = (state, action) => {
     };
   }
 
+  // SUBMIT_SUCCESS
+  if (action.type === "SUBMIT_SUCCESS") {
+    return {
+      isTouched: false,
+      isEmpty: null,
+      isValid: true,
+      value: "",
+    };
+  }
+
   return { isTouched: false, isEmpty: null, isValid: true, value: "" };
 };
 
@@ -91,6 +101,17 @@ const emailReducer = (state, action) => {
       isEmail: false,
       isTouched: true,
       isValid: false,
+    };
+  }
+
+  // SUBMIT_SUCCESS
+  if (action.type === "SUBMIT_SUCCESS") {
+    return {
+      isTouched: false,
+      isEmpty: null,
+      isEmail: null,
+      isValid: true,
+      value: "",
     };
   }
 
@@ -144,6 +165,17 @@ const commentReducer = (state, action) => {
       isShort: true,
       isTouched: true,
       isValid: false,
+    };
+  }
+
+  // SUBMIT_SUCCESS
+  if (action.type === "SUBMIT_SUCCESS") {
+    return {
+      isTouched: false,
+      isEmpty: null,
+      isShort: null,
+      isValid: true,
+      value: "",
     };
   }
 
@@ -250,6 +282,9 @@ const LandingSection = (props) => {
           "success",
           `Thanks for your submission ${name.value}, we will get back to you shortly!`
         );
+        dispatchName({ type: "SUBMIT_SUCCESS" });
+        dispatchEmail({ type: "SUBMIT_SUCCESS" });
+        dispatchComment({ type: "SUBMIT_SUCCESS" });
       } else {
         alertContext.onOpen(
           "error",
@@ -322,6 +357,7 @@ const LandingSection = (props) => {
         <textarea
           name="comment"
           id="comment"
+          value={comment.value}
           onChange={handleCommentChange}
           onBlur={handleCommentBlur}
           className={`${styles.input} ${styles.textarea} ${
