@@ -68,7 +68,7 @@ const Header = () => {
           <nav>
             {socials.map((cur, i) => (
               <a
-                // key={i}
+                key={i}
                 href={cur.url}
                 target="_blank"
                 style={{ marginLeft: "15px" }}>
