@@ -120,7 +120,7 @@ const LandingSection = (props) => {
   };
 
   return (
-    <div className={styles.section}>
+    <div className={styles.section} id="contactme-section">
       <h1 className={styles.header}>Contact Me</h1>
       <form className={styles.form}>
         <label

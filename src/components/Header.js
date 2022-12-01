@@ -33,7 +33,8 @@ const socials = [
 ];
 
 const Header = () => {
-  const handleClick = (anchor) => () => {
+  const handleClick = (anchor) => (e) => {
+    e.preventDefault();
     const id = `${anchor}-section`;
     const element = document.getElementById(id);
     if (element) {
@@ -67,6 +68,7 @@ const Header = () => {
           <nav>
             {socials.map((cur, i) => (
               <a
+                key={i}
                 href={cur.url}
                 style={{ marginLeft: "15px" }}>
                 <FontAwesomeIcon
