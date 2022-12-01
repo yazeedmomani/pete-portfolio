@@ -1,0 +1,29 @@
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 100px;
+  height: 100px;
+  border-width: 10px;
+  border-style: double;
+  border-color: rgb(128, 90, 213) transparent rgb(128, 90, 213) transparent;
+  border-radius: 50%;
+  animation: rotate 1000ms linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

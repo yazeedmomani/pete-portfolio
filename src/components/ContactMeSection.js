@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useReducer, useState } from "react";
 import AlertContext from "../context/alertContext";
 import styles from "./ContactMeSection.module.css";
+import LoadingSpinner from "./LoadingSpinner";
 
 //////////////////////////////////////////////////////////////////
 const nameReducer = (state, action) => {
@@ -338,6 +339,7 @@ const LandingSection = (props) => {
           Submit
         </button>
       </form>
+      <LoadingSpinner />
     </div>
   );
 };
