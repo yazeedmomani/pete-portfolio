@@ -13,8 +13,9 @@ const LandingSection = (props) => {
         <input
           type="text"
           id="name"
-          className={styles.input}
+          className={`${styles.input} ${styles.invalid}`}
         />
+        <div className={styles.error}>Error</div>
         <label
           htmlFor="email"
           className={styles.label}>

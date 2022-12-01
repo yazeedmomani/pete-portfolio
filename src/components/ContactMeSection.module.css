@@ -35,6 +35,7 @@
   color: #fff;
   margin-bottom: 8px;
   font-weight: 500;
+  margin-top: 16px;
 }
 
 .input {
@@ -43,7 +44,6 @@
   background-color: transparent;
   height: 40px;
   border-radius: 8px;
-  margin-bottom: 16px;
   transition: all 200ms;
   color: white;
   padding: 0 16px;
@@ -84,4 +84,23 @@
 
 .button:active {
   background-color: #553c9a;
+}
+
+.error {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  transition: all 200ms;
+}
+
+.invalid {
+  border: 1px solid #e53e3e;
+}
+.invalid + div {
+  opacity: 1;
+  visibility: visible;
+  position: static;
+  color: rgb(229, 62, 62);
+  font-size: 14px;
+  margin-top: 8px;
 }
