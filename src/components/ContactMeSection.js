@@ -2,6 +2,7 @@ import { useReducer } from "react";
 
 import styles from "./ContactMeSection.module.css";
 
+//////////////////////////////////////////////////////////////////
 const nameReducer = (state, action) => {
   // CHANGE
   if (action.type === "CHANGE") {
@@ -30,16 +31,69 @@ const nameReducer = (state, action) => {
     };
   }
 
-  return { isTouched: false, isEmpty: null, value: "" };
+  return { isTouched: false, isEmpty: null, isValid: true, value: "" };
 };
 
-const emailReducer = (state, action) => {};
+//////////////////////////////////////////////////////////////////
+const emailReducer = (state, action) => {
+  // CHANGE
+  if (action.type === "CHANGE") {
+    if (state.isTouched === false) {
+      return { ...state, value: action.value };
+    }
+    if (state.isTouched === true) {
+      console.log(action.value.trim().length === 0);
+      return {
+        ...state,
+        isEmpty: action.value.trim().length === 0,
+        isEmail: action.value.includes("@") && action.value.includes("."),
+        value: action.value,
+        isValid:
+          action.value.trim().length !== 0 &&
+          action.value.includes("@") &&
+          action.value.includes("."),
+      };
+    }
+  }
 
+  // BLUR
+  if (action.type === "BLUR") {
+    return {
+      ...state,
+      isEmpty: action.value.trim().length === 0,
+      isEmail: action.value.includes("@") && action.value.includes("."),
+      value: action.value,
+      isTouched: true,
+      isValid:
+        action.value.trim().length !== 0 &&
+        action.value.includes("@") &&
+        action.value.includes("."),
+    };
+  }
+
+  return {
+    isTouched: false,
+    isEmpty: null,
+    isEmail: null,
+    isValid: true,
+    value: "",
+  };
+};
+
+//////////////////////////////////////////////////////////////////
 const LandingSection = (props) => {
   // Reducers
   const [name, dispatchName] = useReducer(nameReducer, {
     isTouched: false,
     isEmpty: null,
+    isValid: true,
+    value: "",
+  });
+
+  const [email, dispatchEmail] = useReducer(emailReducer, {
+    isTouched: false,
+    isEmpty: null,
+    isEmail: null,
     isValid: true,
     value: "",
   });
@@ -51,6 +105,14 @@ const LandingSection = (props) => {
 
   const handleNameBlur = (e) => {
     dispatchName({ type: "BLUR", value: e.target.value });
+  };
+
+  const handleEmailChange = (e) => {
+    dispatchEmail({ type: "CHANGE", value: e.target.value });
+  };
+
+  const handleEmailBlur = (e) => {
+    dispatchEmail({ type: "BLUR", value: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -78,13 +140,21 @@ const LandingSection = (props) => {
         <label
           htmlFor="email"
           className={styles.label}>
-          Email
+          Email Address
         </label>
         <input
           type="text"
           id="email"
-          className={styles.input}
+          value={email.value}
+          onChange={handleEmailChange}
+          onBlur={handleEmailBlur}
+          className={`${styles.input} ${!email.isValid && styles.invalid}`}
         />
+        <div className={styles.error}>
+          {email.isEmpty
+            ? "Required"
+            : !email.isEmail && "Invalid email address"}
+        </div>
         <label
           htmlFor="type"
           className={styles.label}>
