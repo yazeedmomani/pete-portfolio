@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import AlertContext from "../context/alertContext";
 import styles from "./ContactMeSection.module.css";
 
@@ -157,6 +157,9 @@ const commentReducer = (state, action) => {
 
 //////////////////////////////////////////////////////////////////
 const LandingSection = (props) => {
+  // States
+  const [isLoading, setIsLoading] = useState(false);
+
   // Reducers
   const [name, dispatchName] = useReducer(nameReducer, {
     isTouched: false,
@@ -236,6 +239,8 @@ const LandingSection = (props) => {
       return;
     }
 
+    setIsLoading(true);
+
     setTimeout(() => {
       const chance = Math.random();
 
@@ -250,6 +255,8 @@ const LandingSection = (props) => {
           "Something went wrong, please try again later!"
         );
       }
+
+      setIsLoading(false);
     }, 2000);
   };
 
@@ -257,7 +264,9 @@ const LandingSection = (props) => {
     <div
       className={styles.section}
       id="contactme-section">
-      <h1 className={styles.header}>Contact Me</h1>
+      <h1 className={styles.header}>
+        {isLoading ? "Loading..." : "Contact Me"}
+      </h1>
       <form className={styles.form}>
         <label
           htmlFor="name"
