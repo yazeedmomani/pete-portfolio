@@ -6,7 +6,6 @@ const greeting = "Hello, I am Pete!";
 const bio1 = "A frontend developer";
 const bio2 = "specialised in React";
 const imgUrl = "https://i.pravatar.cc/150?img=7";
-console.log(Heading);
 
 // Implement the UI for the LandingSection component according to the instructions.
 // Use a combination of Avatar, Heading and VStack components.
