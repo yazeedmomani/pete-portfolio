@@ -339,7 +339,7 @@ const LandingSection = (props) => {
           Submit
         </button>
       </form>
-      <LoadingSpinner />
+      {isLoading && <LoadingSpinner />}
     </div>
   );
 };
