@@ -69,7 +69,7 @@ const LandingSection = (props) => {
           onBlur={handleNameBlur}
           className={`${styles.input} ${name.isEmpty && styles.invalid}`}
         />
-        <div className={styles.error}>Error</div>
+        <div className={styles.error}>Required</div>
         <label
           htmlFor="email"
           className={styles.label}>
