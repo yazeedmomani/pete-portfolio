@@ -1,5 +1,6 @@
+import { useContext } from "react";
 import { useReducer } from "react";
-
+import AlertContext from "../context/alertContext";
 import styles from "./ContactMeSection.module.css";
 
 //////////////////////////////////////////////////////////////////
@@ -180,6 +181,9 @@ const LandingSection = (props) => {
     value: "",
   });
 
+  // Context
+  const alertContext = useContext(AlertContext);
+
   // Handlers
   const handleNameChange = (e) => {
     dispatchName({ type: "CHANGE", value: e.target.value });
@@ -231,7 +235,22 @@ const LandingSection = (props) => {
     ) {
       return;
     }
-    alert("Success");
+
+    setTimeout(() => {
+      const chance = Math.random();
+
+      if (chance > 0.5) {
+        alertContext.onOpen(
+          "success",
+          `Thanks for your submission ${name.value}, we will get back to you shortly!`
+        );
+      } else {
+        alertContext.onOpen(
+          "error",
+          "Something went wrong, please try again later!"
+        );
+      }
+    }, 2000);
   };
 
   return (
