@@ -81,6 +81,48 @@ const emailReducer = (state, action) => {
 };
 
 //////////////////////////////////////////////////////////////////
+const commentReducer = (state, action) => {
+  // CHANGE
+  if (action.type === "CHANGE") {
+    if (state.isTouched === false) {
+      return { ...state, value: action.value };
+    }
+    if (state.isTouched === true) {
+      console.log(action.value.trim().length === 0);
+      return {
+        ...state,
+        isEmpty: action.value.trim().length === 0,
+        isShort: action.value.trim().length < 25,
+        value: action.value,
+        isValid:
+          action.value.trim().length !== 0 && action.value.trim().length >= 25,
+      };
+    }
+  }
+
+  // BLUR
+  if (action.type === "BLUR") {
+    return {
+      ...state,
+      isEmpty: action.value.trim().length === 0,
+      isShort: action.value.trim().length < 25,
+      value: action.value,
+      isTouched: true,
+      isValid:
+        action.value.trim().length !== 0 && action.value.trim().length >= 25,
+    };
+  }
+
+  return {
+    isTouched: false,
+    isEmpty: null,
+    isShort: null,
+    isValid: true,
+    value: "",
+  };
+};
+
+//////////////////////////////////////////////////////////////////
 const LandingSection = (props) => {
   // Reducers
   const [name, dispatchName] = useReducer(nameReducer, {
@@ -94,6 +136,14 @@ const LandingSection = (props) => {
     isTouched: false,
     isEmpty: null,
     isEmail: null,
+    isValid: true,
+    value: "",
+  });
+
+  const [comment, dispatchComment] = useReducer(commentReducer, {
+    isTouched: false,
+    isEmpty: null,
+    isShort: null,
     isValid: true,
     value: "",
   });
@@ -115,12 +165,22 @@ const LandingSection = (props) => {
     dispatchEmail({ type: "BLUR", value: e.target.value });
   };
 
+  const handleCommentChange = (e) => {
+    dispatchComment({ type: "CHANGE", value: e.target.value });
+  };
+
+  const handleCommentBlur = (e) => {
+    dispatchComment({ type: "BLUR", value: e.target.value });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   return (
-    <div className={styles.section} id="contactme-section">
+    <div
+      className={styles.section}
+      id="contactme-section">
       <h1 className={styles.header}>Contact Me</h1>
       <form className={styles.form}>
         <label
@@ -176,7 +236,16 @@ const LandingSection = (props) => {
         <textarea
           name="comment"
           id="comment"
-          className={`${styles.input} ${styles.textarea}`}></textarea>
+          onChange={handleCommentChange}
+          onBlur={handleCommentBlur}
+          className={`${styles.input} ${styles.textarea} ${
+            !comment.isValid && styles.invalid
+          }`}></textarea>
+        <div className={styles.error}>
+          {comment.isEmpty
+            ? "Required"
+            : comment.isShort && "Must be at least 25 characters"}
+        </div>
         <button
           className={styles.button}
           type="submit"
