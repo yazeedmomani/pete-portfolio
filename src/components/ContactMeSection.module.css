@@ -43,4 +43,9 @@
   background-color: transparent;
   height: 40px;
   border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.textarea {
+  height: 250px;
 }
