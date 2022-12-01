@@ -30,11 +30,14 @@ const LandingSection = (props) => {
           className={styles.label}>
           Name
         </label>
-        <input
+        <select
           type="text"
           id="type"
-          className={styles.input}
-        />
+          className={`${styles.input} ${styles.select}`}>
+          <option value="hireMe">Freelance project proposal</option>
+          <option value="openSource">Open source consultancy session</option>
+          <option value="other">Other</option>
+        </select>
         <label
           htmlFor="message"
           className={styles.label}>
@@ -50,3 +53,15 @@ const LandingSection = (props) => {
 };
 
 export default LandingSection;
+
+{
+  /* <Select
+                  id="type"
+                  name="type">
+                  <option value="hireMe">Freelance project proposal</option>
+                  <option value="openSource">
+                    Open source consultancy session
+                  </option>
+                  <option value="other">Other</option>
+                </Select> */
+}

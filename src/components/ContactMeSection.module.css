@@ -44,8 +44,25 @@
   height: 40px;
   border-radius: 8px;
   margin-bottom: 16px;
+  transition: all 300ms;
+  color: white;
+  padding: 0 10px;
+}
+
+.input:focus-visible {
+  border: 1px solid #3182ce;
+  outline: none;
+}
+
+.input option {
+  color: black;
+}
+
+.select {
+  cursor: pointer;
 }
 
 .textarea {
   height: 250px;
+  padding: 10px;
 }
