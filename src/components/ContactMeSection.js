@@ -158,7 +158,7 @@ const LandingSection = (props) => {
         <label
           htmlFor="type"
           className={styles.label}>
-          Name
+          Type of enquiry
         </label>
         <select
           type="text"
@@ -169,13 +169,13 @@ const LandingSection = (props) => {
           <option value="other">Other</option>
         </select>
         <label
-          htmlFor="message"
+          htmlFor="comment"
           className={styles.label}>
-          Message
+          Your message
         </label>
         <textarea
-          name="message"
-          id="message"
+          name="comment"
+          id="comment"
           className={`${styles.input} ${styles.textarea}`}></textarea>
         <button
           className={styles.button}
