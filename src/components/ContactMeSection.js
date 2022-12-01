@@ -47,6 +47,7 @@ const LandingSection = (props) => {
           name="message"
           id="message"
           className={`${styles.input} ${styles.textarea}`}></textarea>
+        <button className={styles.button}>Submit</button>
       </form>
     </div>
   );

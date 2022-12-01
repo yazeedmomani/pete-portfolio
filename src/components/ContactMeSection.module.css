@@ -66,3 +66,22 @@
   height: 250px;
   padding: 10px;
 }
+
+.button {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  background-color: rgb(128, 90, 213);
+}
+
+.button:hover {
+  background-color: #6b46c1;
+}
+
+.button:active {
+  background-color: #553c9a;
+}
