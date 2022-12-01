@@ -31,6 +31,16 @@ const nameReducer = (state, action) => {
     };
   }
 
+  // SUBMIT_ERROR
+  if (action.type === "SUBMIT_ERROR") {
+    return {
+      ...state,
+      isEmpty: true,
+      isTouched: true,
+      isValid: false,
+    };
+  }
+
   return { isTouched: false, isEmpty: null, isValid: true, value: "" };
 };
 
@@ -68,6 +78,17 @@ const emailReducer = (state, action) => {
         action.value.trim().length !== 0 &&
         action.value.includes("@") &&
         action.value.includes("."),
+    };
+  }
+
+  // SUBMIT_ERROR
+  if (action.type === "SUBMIT_ERROR") {
+    return {
+      ...state,
+      isEmpty: true,
+      isEmail: false,
+      isTouched: true,
+      isValid: false,
     };
   }
 
@@ -110,6 +131,17 @@ const commentReducer = (state, action) => {
       isTouched: true,
       isValid:
         action.value.trim().length !== 0 && action.value.trim().length >= 25,
+    };
+  }
+
+  // SUBMIT_ERROR
+  if (action.type === "SUBMIT_ERROR") {
+    return {
+      ...state,
+      isEmpty: true,
+      isShort: true,
+      isTouched: true,
+      isValid: false,
     };
   }
 
@@ -175,6 +207,31 @@ const LandingSection = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      name.isEmpty === null ||
+      email.isEmpty === null ||
+      comment.isEmpty === null ||
+      email.isEmail === null ||
+      comment.isShort === null
+    ) {
+      if (name.isEmpty === null) dispatchName({ type: "SUBMIT_ERROR" });
+      if (email.isEmpty === null || email.isEmail === null)
+        dispatchEmail({ type: "SUBMIT_ERROR" });
+      if (comment.isEmpty === null || comment.isShort === null)
+        dispatchComment({ type: "SUBMIT_ERROR" });
+      return;
+    }
+
+    if (
+      name.isEmpty === true ||
+      email.isEmpty === true ||
+      comment.isEmpty === true ||
+      email.isEmail === false ||
+      comment.isShort === true
+    ) {
+      return;
+    }
+    alert("Success");
   };
 
   return (
