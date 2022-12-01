@@ -1,6 +1,10 @@
 import styles from "./ContactMeSection.module.css";
 
 const LandingSection = (props) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className={styles.section}>
       <h1 className={styles.header}>Contact Me</h1>
@@ -48,22 +52,15 @@ const LandingSection = (props) => {
           name="message"
           id="message"
           className={`${styles.input} ${styles.textarea}`}></textarea>
-        <button className={styles.button}>Submit</button>
+        <button
+          className={styles.button}
+          type="submit"
+          onClick={handleSubmit}>
+          Submit
+        </button>
       </form>
     </div>
   );
 };
 
 export default LandingSection;
-
-{
-  /* <Select
-                  id="type"
-                  name="type">
-                  <option value="hireMe">Freelance project proposal</option>
-                  <option value="openSource">
-                    Open source consultancy session
-                  </option>
-                  <option value="other">Other</option>
-                </Select> */
-}
