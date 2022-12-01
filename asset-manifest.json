@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/pete-portfolio/static/css/main.3f0a9656.css",
+    "main.js": "/pete-portfolio/static/js/main.6d0d30be.js",
+    "static/js/111.bb39efaf.chunk.js": "/pete-portfolio/static/js/111.bb39efaf.chunk.js",
+    "static/media/photo4.jpg": "/pete-portfolio/static/media/photo4.4c7907d15dd9ea0be97c.jpg",
+    "static/media/photo2.jpg": "/pete-portfolio/static/media/photo2.7d510936625768642967.jpg",
+    "static/media/photo3.jpg": "/pete-portfolio/static/media/photo3.9a32dfac129b20149889.jpg",
+    "static/media/photo1.jpg": "/pete-portfolio/static/media/photo1.76b22eb753ddc88e0626.jpg",
+    "index.html": "/pete-portfolio/index.html",
+    "main.3f0a9656.css.map": "/pete-portfolio/static/css/main.3f0a9656.css.map",
+    "main.6d0d30be.js.map": "/pete-portfolio/static/js/main.6d0d30be.js.map",
+    "111.bb39efaf.chunk.js.map": "/pete-portfolio/static/js/111.bb39efaf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3f0a9656.css",
+    "static/js/main.6d0d30be.js"
+  ]
+}
